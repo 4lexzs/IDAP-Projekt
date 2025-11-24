@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wirtschaftsquiz – Dashboard</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div class="nav">
+          <strong>Wirtschaftsquiz</strong>
+          <div class="tabs">
+            <a class="tab-link" href="index.html">Home</a>
+            <a class="tab-link" href="question-bank.html">Fragensammlung</a>
+            <a class="tab-link active" href="dashboard.html">Dashboard</a>
+          </div>
+          <div class="user-chip">
+            <span id="userBadge"></span>
+            <button class="btn secondary small" id="logoutBtn" type="button">Logout</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="card">
+          <h1>Dashboard</h1>
+          <p>Quiz content will go here</p>
+        </section>
+      </main>
+
+      <footer class="footer">IDPA – Informatik & Wirtschaft</footer>
+    </div>
+    <script type="module" src="assets/js/app-shell.js"></script>
+    <script type="module" src="assets/js/dashboard.js"></script>
+  </body>
+</html>
+
