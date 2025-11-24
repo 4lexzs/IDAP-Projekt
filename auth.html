@@ -11,17 +11,35 @@
       <header>
         <div class="nav">
           <strong>Wirtschaftsquiz</strong>
+          <span class="muted">Bitte anmelden oder registrieren</span>
         </div>
       </header>
       <main class="content">
-        <section class="card">
-          <h1>Login</h1>
-          <p id="authMessage"></p>
+        <section class="card auth-card">
+          <div class="auth-grid">
+            <form id="loginForm">
+              <h2>Login</h2>
+              <p class="muted">Demo-Zugang: demo / demo</p>
+              <label for="loginUser">Benutzername</label>
+              <input id="loginUser" type="text" name="username" required />
+              <label for="loginPass">Passwort</label>
+              <input id="loginPass" type="password" name="password" required />
+              <button class="btn primary" type="submit">Einloggen</button>
+            </form>
+            <form id="registerForm">
+              <h2>Registrieren</h2>
+              <label for="registerUser">Benutzername</label>
+              <input id="registerUser" type="text" name="username" required />
+              <label for="registerPass">Passwort</label>
+              <input id="registerPass" type="password" name="password" minlength="4" required />
+              <button class="btn secondary" type="submit">Konto erstellen</button>
+            </form>
+          </div>
+          <p id="authMessage" class="muted" style="margin-top:1rem"></p>
         </section>
       </main>
-      <footer class="footer">IDPA – Informatik & Wirtschaft</footer>
+      <footer class="footer">Alle Daten werden pro Benutzer lokal gespeichert.</footer>
     </div>
     <script type="module" src="assets/js/auth.js"></script>
   </body>
 </html>
-

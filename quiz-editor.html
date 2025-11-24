@@ -27,14 +27,59 @@
         <section class="card">
           <h1>Quiz erstellen / bearbeiten</h1>
           <form id="quizForm">
-            <!-- Form content goes here -->
+            <div class="grid two">
+              <div>
+                <label for="quizName">Name</label>
+                <input type="text" id="quizName" required />
+              </div>
+              <div>
+                <label for="quizTopic">Thema</label>
+                <select id="quizTopic" required></select>
+              </div>
+            </div>
+            <div class="grid two" style="margin-top: 1.5rem">
+              <div>
+                <h3>Fragenpool</h3>
+                <p class="muted">Wähle Fragen aus der Sammlung oder erstelle neue.</p>
+                <div class="grid two" style="margin-bottom:1rem">
+                  <div>
+                    <label for="poolSearchText">Suche</label>
+                    <input id="poolSearchText" type="text" placeholder="Stichwort ..." />
+                  </div>
+                  <div class="grid two">
+                    <div>
+                      <label for="poolSearchTopic">Thema</label>
+                      <select id="poolSearchTopic">
+                        <option value="">Alle</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="poolSearchType">Aufgabentyp</label>
+                      <select id="poolSearchType">
+                        <option value="">Alle</option>
+                        <option value="multiple">Multiple Choice</option>
+                        <option value="truefalse">Richtig / Falsch</option>
+                        <option value="input">Eingabe</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div id="questionPool" class="list"></div>
+                <a class="btn secondary" href="new-question.html" target="_blank">Neue Frage anlegen</a>
+              </div>
+              <div>
+                <h3>Quizfragen</h3>
+                <p class="muted">Ausgewählte Fragen in aktueller Reihenfolge.</p>
+                <div id="selectedQuestions" class="list"></div>
+              </div>
+            </div>
+            <button class="btn primary" type="submit">Quiz speichern</button>
           </form>
         </section>
       </main>
-      <footer class="footer">IDPA – Informatik & Wirtschaft</footer>
+      <footer class="footer">Das Quiz wird im lokalen Speicher abgelegt.</footer>
     </div>
     <script type="module" src="assets/js/app-shell.js"></script>
     <script type="module" src="assets/js/quiz-editor.js"></script>
   </body>
 </html>
-

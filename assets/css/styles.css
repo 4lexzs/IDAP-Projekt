@@ -1,9 +1,11 @@
-/* Base configuration */
+/* Базовые настройки */
 :root {
   --bg-light: #f9fafb;
   --bg-panel: #ffffff;
   --border: #d4dbe3;
   --primary: #5575e7;
+  --primary-dark: #3b56b4;
+  --accent: #ffb347;
   --text-main: #1f2933;
   --text-muted: #5c6b7a;
   --radius: 16px;
@@ -27,7 +29,7 @@ a {
   text-decoration: none;
 }
 
-/* Layout */
+/* Общие компоненты */
 .shell {
   min-height: 100vh;
   display: flex;
@@ -56,10 +58,13 @@ header {
 .tab-link {
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
   color: var(--text-muted);
 }
 
 .tab-link.active {
+  border-color: var(--primary);
   color: var(--primary);
 }
 
@@ -67,6 +72,10 @@ header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.user-chip span {
+  font-weight: 600;
 }
 
 .content {
@@ -84,7 +93,6 @@ header {
   padding: 2rem;
 }
 
-/* Typography */
 .card h1,
 .card h2,
 .card h3 {
@@ -97,7 +105,6 @@ header {
   font-size: 0.95rem;
 }
 
-/* Utilities */
 .grid {
   display: grid;
   gap: 1rem;
@@ -107,7 +114,6 @@ header {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -118,6 +124,11 @@ header {
   padding: 0.65rem 1.25rem;
   font-size: 0.95rem;
   cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
 }
 
 .btn.primary {
@@ -130,12 +141,17 @@ header {
   border: 1px solid var(--border);
 }
 
+.btn.danger {
+  background: #ff5f56;
+  color: #fff;
+}
+
 .btn.small {
   padding: 0.4rem 0.75rem;
   font-size: 0.85rem;
 }
 
-/* Forms */
+/* Формы */
 form {
   display: grid;
   gap: 1rem;
@@ -164,7 +180,102 @@ textarea {
   resize: vertical;
 }
 
-/* Footer */
+#optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.option-radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+}
+
+.option-radio input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #3cb371;
+}
+
+.pill {
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.list-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.quiz-meta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+}
+
+.question-block {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.question-block h3 {
+  margin-top: 0;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.answers label {
+  font-weight: 500;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .footer {
   text-align: center;
   padding: 1rem;
@@ -172,3 +283,12 @@ textarea {
   color: var(--text-muted);
 }
 
+.auth-card {
+  width: min(720px, 100%);
+}
+
+.auth-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}

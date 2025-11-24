@@ -25,15 +25,30 @@
 
       <main class="content">
         <section class="card">
-          <h1>Dashboard</h1>
-          <p>Quiz content will go here</p>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <h1>Quiz-Dashboard</h1>
+              <p class="muted">Erstelle neue Quizze und verwalte vorhandene Sammlungen.</p>
+            </div>
+            <a class="btn primary" href="quiz-editor.html">Neues Quiz</a>
+          </div>
+          <div id="quizList" class="list" style="margin-top:2rem"></div>
+        </section>
+        <section class="card" style="margin-top:1.5rem">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <h2>Meine Fragen</h2>
+              <p class="muted">Bearbeite oder lösche deine eigenen Fragen.</p>
+            </div>
+            <a class="btn secondary" href="new-question.html">Neue Frage</a>
+          </div>
+          <div id="myQuestions" class="list" style="margin-top:1.5rem"></div>
         </section>
       </main>
 
-      <footer class="footer">IDPA – Informatik & Wirtschaft</footer>
+      <footer class="footer">Quiz Links werden lokal generiert und können kopiert werden.</footer>
     </div>
     <script type="module" src="assets/js/app-shell.js"></script>
     <script type="module" src="assets/js/dashboard.js"></script>
   </body>
 </html>
-
