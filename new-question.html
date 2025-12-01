@@ -27,12 +27,43 @@
         <section class="card">
           <h1>Neue Frage erfassen</h1>
           <form id="questionForm">
-            <!-- Form content goes here -->
+            <div>
+              <label for="title">Fragentext</label>
+              <textarea id="title" name="title" placeholder="Frage ..." required></textarea>
+            </div>
+            <div class="grid two">
+              <div>
+                <label for="topicId">Thema</label>
+                <select id="topicId" name="topicId" required></select>
+              </div>
+              <div>
+                <label for="type">Aufgabentyp</label>
+                <select id="type" name="type" required>
+                  <option value="multiple">Multiple Choice</option>
+                  <option value="truefalse">Richtig / Falsch</option>
+                  <option value="input">Eingabe</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="points">Punkte</label>
+              <input type="number" id="points" name="points" min="1" value="1" required />
+            </div>
+            <div id="optionsWrapper">
+              <label>Antwortmöglichkeiten</label>
+              <div id="optionsList" class="grid"></div>
+              <button class="btn secondary small" id="addOptionBtn" type="button">+ Antwort hinzufügen</button>
+            </div>
+            <div id="inputAnswerWrapper" style="display: none">
+              <label for="inputAnswer">Richtige Antwort (Freitext)</label>
+              <input type="text" id="inputAnswer" placeholder="Antwort ..." />
+            </div>
+            <button class="btn primary" type="submit">Erstellen</button>
           </form>
         </section>
       </main>
 
-      <footer class="footer">IDPA – Informatik & Wirtschaft</footer>
+      <footer class="footer">Nach dem Speichern wirst du zur Fragensammlung zurückgeleitet.</footer>
     </div>
     <script type="module" src="assets/js/app-shell.js"></script>
     <script type="module" src="assets/js/new-question.js"></script>

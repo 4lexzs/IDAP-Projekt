@@ -25,12 +25,44 @@
 
       <main class="content">
         <section class="card">
-          <h1>Fragensammlung</h1>
-          <p>Question bank content will go here</p>
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <div>
+              <h1>Fragensammlung</h1>
+              <p class="muted">Alle vorhandenen Fragen nach Themen sortiert.</p>
+            </div>
+            <div class="grid">
+              <a class="btn primary" href="new-question.html">Neue Frage</a>
+              <button id="seedState" class="btn secondary" type="button">Beispieldaten laden</button>
+            </div>
+          </div>
+        <div class="grid two" style="margin-top:1.5rem">
+          <div>
+            <label for="searchText">Suche</label>
+            <input id="searchText" type="text" placeholder="Stichwort im Fragentext ..." />
+          </div>
+          <div class="grid two">
+            <div>
+              <label for="searchTopic">Thema</label>
+              <select id="searchTopic">
+                <option value="">Alle Themen</option>
+              </select>
+            </div>
+            <div>
+              <label for="searchType">Aufgabentyp</label>
+              <select id="searchType">
+                <option value="">Alle</option>
+                <option value="multiple">Multiple Choice</option>
+                <option value="truefalse">Richtig / Falsch</option>
+                <option value="input">Eingabe</option>
+              </select>
+            </div>
+          </div>
+        </div>
+          <div id="questionList" class="list" style="margin-top: 2rem"></div>
         </section>
       </main>
 
-      <footer class="footer">IDPA – Informatik & Wirtschaft</footer>
+      <footer class="footer">Fragen lassen sich lokal im Browser persistieren (localStorage).</footer>
     </div>
     <script type="module" src="assets/js/app-shell.js"></script>
     <script type="module" src="assets/js/question-bank.js"></script>
