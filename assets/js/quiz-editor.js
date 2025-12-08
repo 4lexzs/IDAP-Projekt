@@ -1,11 +1,53 @@
-import { getTopics, upsertQuiz } from "./storage.js";
+import { addTopic, getAllQuestions, getQuizById, getQuestions, getTopics, upsertQuiz } from "./storage.js";
 
-// TODO: Load quiz if editing, else create new
-// TODO: Populate topics select
-// TODO: Render question pool with search/filter
-// TODO: Render selected questions with reordering
-// TODO: Handle adding/removing questions from quiz
-// TODO: Handle quiz save
+const params = new URLSearchParams(window.location.search);
+const quizId = params.get("quiz");
+
+const form = document.querySelector("#quizForm");
+const nameInput = document.querySelector("#quizName");
+const topicSelect = document.querySelector("#quizTopic");
+const pool = document.querySelector("#questionPool");
+const selectedList = document.querySelector("#selectedQuestions");
+const poolSearchText = document.querySelector("#poolSearchText");
+const poolSearchTopic = document.querySelector("#poolSearchTopic");
+const poolSearchType = document.querySelector("#poolSearchType");
+
+let selectedIds = [];
+let allQuestions = [];
+
+function populateTopics() {
+  const topics = getTopics();
+  topicSelect.innerHTML = topics.map((topic) => `<option value="${topic.id}">${topic.name}</option>`).join("");
+  topicSelect.insertAdjacentHTML("beforeend", `<option value="__add">+ Neues Thema ...</option>`);
+}
+
+function ensureTopic(value) {
+  if (value !== "__add") return value;
+  const newName = prompt("Name des neuen Themas:");
+  if (!newName) return topicSelect.value;
+  const topic = addTopic(newName);
+  populateTopics();
+  topicSelect.value = topic.id;
+  return topic.id;
+}
+
+function refreshAllQuestions() {
+  allQuestions = getAllQuestions();
+  const topics = [...new Set(allQuestions.map((question) => question.topicName).filter(Boolean))];
+  const currentValue = poolSearchTopic.value;
+  poolSearchTopic.innerHTML = `<option value="">Alle</option>${topics.map((name) => `<option value="${name}">${name}</option>`).join("")}`;
+  if (topics.includes(currentValue)) {
+    poolSearchTopic.value = currentValue;
+  }
+}
+
+function renderPool() {
+  const text = poolSearchText.value.trim().toLowerCase();
+  const topicFilter = poolSearchTopic.value;
+  const typeFilter = poolSearchType.value;
+  const questions = allQuestions.filter((question) => {
+    if (topicFilter && question.topicName !== topicFilter) return false;
+    if (typeFilter && question.type !== typeFilter) return false;
     if (text) {
       const haystack = `${question.title} ${(question.options ?? []).join(" ")}`.toLowerCase();
       if (!haystack.includes(text)) return false;
