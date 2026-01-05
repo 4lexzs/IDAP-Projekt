@@ -2,8 +2,8 @@ import { addQuestion, addTopic, getQuestionById, getTopics, updateQuestion } fro
 
 const form = document.querySelector("#questionForm");
 const topicSelect = document.querySelector("#topicId");
+const addTopicBtn = document.querySelector("#addTopicBtn");
 const typeSelect = document.querySelector("#type");
-const pointsInput = document.querySelector("#points");
 const titleInput = document.querySelector("#title");
 const optionsWrapper = document.querySelector("#optionsWrapper");
 const optionsList = document.querySelector("#optionsList");
@@ -11,158 +11,209 @@ const addOptionBtn = document.querySelector("#addOptionBtn");
 const inputAnswerWrapper = document.querySelector("#inputAnswerWrapper");
 const inputAnswer = document.querySelector("#inputAnswer");
 const heading = document.querySelector("h1");
+const submitBtn = document.querySelector("button[type='submit']");
 
 const params = new URLSearchParams(window.location.search);
 const questionId = params.get("id");
-let editingQuestion = questionId ? getQuestionById(questionId) : null;
+const returnTarget = params.get("return"); 
+const returnId = params.get("returnId");
 
-if (questionId && !editingQuestion) {
-  alert("Frage konnte nicht geladen werden. Es wird eine neue Frage erstellt.");
+let editingQuestion = null;
+
+if (returnTarget === "quiz") {
+    submitBtn.textContent = "Erstellen und zurück";
 }
+
+// init form
+setTimeout(() => {
+    if (questionId) {
+        editingQuestion = getQuestionById(questionId);
+        if(editingQuestion) hydrateForm();
+    }
+    populateTopics();
+    handleTypeChange(true);
+}, 200);
 
 function populateTopics() {
-  const topics = getTopics();
-  topicSelect.innerHTML = topics.map((topic) => `<option value="${topic.id}">${topic.name}</option>`).join("");
-  topicSelect.insertAdjacentHTML("beforeend", `<option value="__add">+ Neues Thema ...</option>`);
+    const topics = getTopics();
+    const html = topics.map((topic) => `<option value="${topic.id}">${topic.name}</option>`).join("");
+    topicSelect.innerHTML = html;
+    
+    if (editingQuestion && !Array.from(topicSelect.options).some((opt) => opt.value === editingQuestion.topicId)) {
+        const newOption = document.createElement("option");
+        newOption.value = editingQuestion.topicId;
+        newOption.textContent = "Importiertes Thema";
+        topicSelect.insertBefore(newOption, topicSelect.firstChild);
+        topicSelect.value = editingQuestion.topicId;
+    } else if (editingQuestion) {
+        topicSelect.value = editingQuestion.topicId;
+    }
 }
 
-function ensureTopic(value) {
-  if (value !== "__add") return value;
-  const newName = prompt("Name des neuen Themas:");
-  if (!newName) return topicSelect.value;
-  const topic = addTopic(newName);
-  populateTopics();
-  topicSelect.value = topic.id;
-  return topic.id;
-}
+addTopicBtn.addEventListener("click", async () => {
+    const newName = prompt("Name des neuen Themas:");
+    if (!newName) return;
+    const topic = await addTopic(newName);
+    populateTopics();
+    topicSelect.value = topic.id;
+});
 
+// dynamic inputs
 function addOption(value = "", isCorrect = false) {
-  const row = document.createElement("div");
-  row.className = "option-row";
-
-  const input = document.createElement("input");
-  input.type = "text";
-  input.className = "option-input";
-  input.placeholder = "Antwort ...";
-  input.value = value;
-
-  const radioLabel = document.createElement("label");
-  radioLabel.className = "option-radio";
-  radioLabel.title = "Als richtige Antwort markieren";
-
-  const radio = document.createElement("input");
-  radio.type = "radio";
-  radio.name = "correctOption";
-  radio.checked = isCorrect || !optionsList.querySelector('input[type="radio"]:checked');
-
-  radioLabel.appendChild(radio);
-  row.append(input, radioLabel);
-  optionsList.appendChild(row);
+    const row = document.createElement("div");
+    row.className = "list-item";
+    row.style.padding = "0.5rem";
+    
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "option-input";
+    input.placeholder = "Antwort ...";
+    input.value = value;
+    input.style.flex = "1";
+    input.style.marginRight = "1rem";
+    
+    const radioLabel = document.createElement("label");
+    radioLabel.className = "option-radio";
+    radioLabel.style.marginTop = "0";
+    radioLabel.title = "Als richtige Antwort markieren";
+    
+    const inputType = typeSelect.value === "multiple" ? "checkbox" : "radio";
+    
+    const choiceInput = document.createElement("input");
+    choiceInput.type = inputType;
+    choiceInput.name = "correctOption";
+    choiceInput.checked = isCorrect;
+    
+    choiceInput.style.width = "20px";
+    choiceInput.style.height = "20px";
+    
+    radioLabel.appendChild(choiceInput);
+    row.append(input, radioLabel);
+    optionsList.appendChild(row);
 }
 
 function setupOptions(type, question) {
-  optionsList.innerHTML = "";
-  if (type === "input") return;
-
-  const isMultiple = type === "multiple";
-  const fallback = isMultiple ? ["Antwort 1", "Antwort 2"] : ["Richtig", "Falsch"];
-  const sourceOptions = question?.options?.length ? question.options : fallback;
-
-  sourceOptions.forEach((option, index) => {
-    addOption(option, question?.answer === index);
-  });
-
-  addOptionBtn.style.display = "inline-flex";
-  if (!isMultiple) {
-    // Für Richtig/Falsch mindestens zwei Antworten vorgeben
-    while (optionsList.children.length < 2) {
-      addOption("", false);
+    optionsList.innerHTML = "";
+    if (type === "input") return;
+    
+    const isMultiple = type === "multiple";
+    const fallback = isMultiple ? ["Antwort 1", "Antwort 2"] : ["Richtig", "Falsch"];
+    const sourceOptions = question?.options?.length ? question.options : fallback;
+    
+    const answerData = question?.answer;
+    
+    sourceOptions.forEach((option, index) => {
+      let correct = false;
+      if (Array.isArray(answerData)) {
+          correct = answerData.includes(index);
+      } else {
+          correct = answerData === index;
+      }
+      addOption(option, correct);
+    });
+    
+    addOptionBtn.style.display = "inline-flex";
+    if (!isMultiple) {
+      while (optionsList.children.length < 2) {
+        addOption("", false);
+      }
     }
-  }
 }
 
 function handleTypeChange(initial = false) {
-  const type = typeSelect.value;
-  const question = initial ? editingQuestion : null;
-  const showOptions = type === "multiple" || type === "truefalse";
-  optionsWrapper.style.display = showOptions ? "block" : "none";
-  inputAnswerWrapper.style.display = type === "input" ? "block" : "none";
-  if (!showOptions) {
-    addOptionBtn.style.display = "none";
-    return;
-  }
-  setupOptions(type, question);
+    const type = typeSelect.value;
+    const question = initial ? editingQuestion : null;
+    const showOptions = type === "multiple" || type === "truefalse";
+    
+    optionsWrapper.style.display = showOptions ? "block" : "none";
+    inputAnswerWrapper.style.display = type === "input" ? "block" : "none";
+    
+    if (!showOptions) {
+      addOptionBtn.style.display = "none";
+      return;
+    }
+    setupOptions(type, question);
 }
 
 typeSelect.addEventListener("change", () => handleTypeChange(false));
-topicSelect.addEventListener("change", (event) => ensureTopic(event.target.value));
 addOptionBtn.addEventListener("click", () => addOption());
 
-form.addEventListener("submit", (event) => {
+function hydrateForm() {
+    if (!editingQuestion) return;
+    heading.textContent = "Frage bearbeiten";
+    titleInput.value = editingQuestion.title;
+    typeSelect.value = editingQuestion.type;
+    if (editingQuestion.type === "input") {
+      inputAnswer.value = editingQuestion.answer ?? "";
+    }
+}
+
+// submit handler
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(form);
   const type = typeSelect.value;
-  const topicId = ensureTopic(formData.get("topicId"));
+  const topicId = topicSelect.value; 
 
   const payload = {
     title: formData.get("title").trim(),
     topicId,
     type,
-    points: Number(formData.get("points")) || 1,
+    points: 1,
   };
 
   if (type === "input") {
     payload.options = [];
     payload.answer = inputAnswer.value.trim();
   } else {
-    const optionRows = Array.from(optionsList.querySelectorAll(".option-row")).map((row) => {
+    const optionRows = Array.from(optionsList.querySelectorAll(".list-item")).map((row) => {
       const label = row.querySelector(".option-input")?.value.trim();
-      const isCorrect = row.querySelector('input[type="radio"]')?.checked;
+      const isCorrect = row.querySelector('input[name="correctOption"]')?.checked;
       return { label, isCorrect };
     });
+    
     const filtered = optionRows.filter((row) => row.label);
     if (filtered.length < 2) {
-      alert("Bitte mindestens zwei Antwortmöglichkeiten angeben.");
+      alert("min 2 options");
       return;
     }
-    const answerIndex = filtered.findIndex((row) => row.isCorrect);
-    if (answerIndex === -1) {
-      alert("Bitte markiere die richtige Antwort.");
-      return;
+    
+    if (type === "multiple") {
+        const answerIndices = [];
+        filtered.forEach((row, idx) => {
+            if(row.isCorrect) answerIndices.push(idx);
+        });
+        
+        if (answerIndices.length === 0) {
+             alert("mark correct answer");
+             return;
+        }
+        payload.answer = answerIndices;
+    } else {
+        const answerIndex = filtered.findIndex((row) => row.isCorrect);
+        if (answerIndex === -1) {
+          alert("mark correct answer");
+          return;
+        }
+        payload.answer = answerIndex;
     }
+    
     payload.options = filtered.map((row) => row.label);
-    payload.answer = answerIndex;
   }
 
   if (editingQuestion) {
-    updateQuestion(editingQuestion.id, payload);
+    await updateQuestion(editingQuestion.id, payload);
   } else {
-    addQuestion(payload);
+    await addQuestion(payload);
   }
-  window.location.href = "question-bank.html";
+
+  if (returnTarget === "quiz") {
+      if (returnId) {
+        window.location.href = `quiz-editor.html?quiz=${returnId}`;
+      } else {
+        window.location.href = "quiz-editor.html";
+      }
+  } else {
+      window.location.href = "question-bank.html";
+  }
 });
-
-function hydrateForm() {
-  if (!editingQuestion) return;
-  heading.textContent = "Frage bearbeiten";
-  titleInput.value = editingQuestion.title;
-  topicSelect.value = editingQuestion.topicId;
-  pointsInput.value = editingQuestion.points ?? 1;
-  typeSelect.value = editingQuestion.type;
-  if (editingQuestion.type === "input") {
-    inputAnswer.value = editingQuestion.answer ?? "";
-  }
-}
-
-populateTopics();
-if (editingQuestion) {
-  // ensure topic option exists
-  if (!Array.from(topicSelect.options).some((opt) => opt.value === editingQuestion.topicId)) {
-    const newOption = document.createElement("option");
-    newOption.value = editingQuestion.topicId;
-    newOption.textContent = "Importiertes Thema";
-    topicSelect.insertBefore(newOption, topicSelect.firstChild);
-  }
-}
-hydrateForm();
-handleTypeChange(true);

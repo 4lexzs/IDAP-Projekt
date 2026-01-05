@@ -11,35 +11,53 @@
       <header>
         <div class="nav">
           <strong>Wirtschaftsquiz</strong>
-          <span class="muted">Bitte anmelden oder registrieren</span>
+          <div class="tabs">
+             <button id="themeToggle" class="theme-toggle">🌙</button>
+             <a class="tab-link" href="index.html">Zurück zur Startseite</a>
+          </div>
         </div>
       </header>
       <main class="content">
-        <section class="card auth-card">
-          <div class="auth-grid">
-            <form id="loginForm">
-              <h2>Login</h2>
-              <p class="muted">Demo-Zugang: demo / demo</p>
-              <label for="loginUser">Benutzername</label>
-              <input id="loginUser" type="text" name="username" required />
-              <label for="loginPass">Passwort</label>
-              <input id="loginPass" type="password" name="password" required />
-              <button class="btn primary" type="submit">Einloggen</button>
-            </form>
-            <form id="registerForm">
-              <h2>Registrieren</h2>
-              <label for="registerUser">Benutzername</label>
-              <input id="registerUser" type="text" name="username" required />
-              <label for="registerPass">Passwort</label>
-              <input id="registerPass" type="password" name="password" minlength="4" required />
-              <button class="btn secondary" type="submit">Konto erstellen</button>
-            </form>
-          </div>
-          <p id="authMessage" class="muted" style="margin-top:1rem"></p>
+        <section class="card">
+            <h1 style="text-align:center; margin-bottom: 2rem;">Willkommen zurück</h1>
+            <div id="authMessage" style="text-align:center; color: var(--danger); margin-bottom: 1rem;"></div>
+            
+            <div class="auth-grid">
+                <div class="auth-divider">
+                    <form id="loginForm">
+                    <h2>Anmelden</h2>
+                    <p class="muted">Bereits registriert?</p>
+                    <label for="loginUser">Benutzername</label>
+                    <input id="loginUser" type="text" name="username" required placeholder="Ihr Benutzername" />
+                    
+                    <label for="loginPass">Passwort</label>
+                    <input id="loginPass" type="password" name="password" required placeholder="Ihr Passwort" />
+                    
+                    <button class="btn primary" type="submit" style="width:100%; margin-top:1.5rem">Einloggen</button>
+                    </form>
+                </div>
+
+                <div>
+                    <form id="registerForm">
+                    <h2>Registrieren</h2>
+                    <p class="muted">Neu hier?</p>
+                    <label for="registerUser">Benutzername</label>
+                    <input id="registerUser" type="text" name="username" required placeholder="Gewünschter Name" />
+                    
+                    <label for="registerPass">Passwort</label>
+                    <input id="registerPass" type="password" name="password" required placeholder="Neues Passwort" />
+                    
+                    <button class="btn secondary" type="submit" style="width:100%; margin-top:1.5rem">Konto erstellen</button>
+                    </form>
+                </div>
+            </div>
         </section>
       </main>
-      <footer class="footer">Alle Daten werden pro Benutzer lokal gespeichert.</footer>
+      <footer class="footer">
+        &copy; 2026 IDPA Projekt.
+      </footer>
     </div>
+    <script type="module" src="assets/js/app-shell.js"></script>
     <script type="module" src="assets/js/auth.js"></script>
   </body>
 </html>

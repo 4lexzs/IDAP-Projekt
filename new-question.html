@@ -12,6 +12,7 @@
         <div class="nav">
           <strong>Wirtschaftsquiz</strong>
           <div class="tabs">
+            <button id="themeToggle" class="theme-toggle">🌙</button>
             <a class="tab-link" href="index.html">Home</a>
             <a class="tab-link active" href="question-bank.html">Fragensammlung</a>
             <a class="tab-link" href="dashboard.html">Dashboard</a>
@@ -28,13 +29,16 @@
           <h1>Neue Frage erfassen</h1>
           <form id="questionForm">
             <div>
-              <label for="title">Fragentext</label>
-              <textarea id="title" name="title" placeholder="Frage ..." required></textarea>
+              <label for="title">Fragetext</label>
+              <textarea id="title" name="title" placeholder="Frage ..." required style="min-height: 80px;"></textarea>
             </div>
             <div class="grid two">
               <div>
                 <label for="topicId">Thema</label>
-                <select id="topicId" name="topicId" required></select>
+                <div class="input-group">
+                    <select id="topicId" name="topicId" required></select>
+                    <button type="button" id="addTopicBtn" class="btn secondary">+</button>
+                </div>
               </div>
               <div>
                 <label for="type">Aufgabentyp</label>
@@ -45,28 +49,28 @@
                 </select>
               </div>
             </div>
-            <div>
-              <label for="points">Punkte</label>
-              <input type="number" id="points" name="points" min="1" value="1" required />
-            </div>
-            <div id="optionsWrapper">
-              <label>Antwortmöglichkeiten</label>
+            
+            <div id="optionsWrapper" style="margin-top: 1.5rem; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius);">
+              <label style="margin-top:0">Antwortmöglichkeiten</label>
               <div id="optionsList" class="grid"></div>
-              <button class="btn secondary small" id="addOptionBtn" type="button">+ Antwort hinzufügen</button>
+              <button class="btn secondary small" id="addOptionBtn" type="button" style="margin-top:1rem">+ Antwort hinzufügen</button>
             </div>
-            <div id="inputAnswerWrapper" style="display: none">
+            
+            <div id="inputAnswerWrapper" style="display: none; margin-top: 1.5rem;">
               <label for="inputAnswer">Richtige Antwort (Freitext)</label>
               <input type="text" id="inputAnswer" placeholder="Antwort ..." />
             </div>
-            <button class="btn primary" type="submit">Erstellen</button>
+
+            <div style="margin-top: 2rem;">
+                <button class="btn primary" type="submit">Erstellen</button>
+            </div>
           </form>
         </section>
       </main>
 
-      <footer class="footer">Nach dem Speichern wirst du zur Fragensammlung zurückgeleitet.</footer>
+      <footer class="footer">IDPA Projekt 2026</footer>
     </div>
     <script type="module" src="assets/js/app-shell.js"></script>
     <script type="module" src="assets/js/new-question.js"></script>
   </body>
 </html>
-

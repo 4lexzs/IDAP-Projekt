@@ -12,6 +12,7 @@
         <div class="nav">
           <strong>Wirtschaftsquiz</strong>
           <div class="tabs">
+            <button id="themeToggle" class="theme-toggle">🌙</button>
             <a class="tab-link" href="index.html">Home</a>
             <a class="tab-link active" href="question-bank.html">Fragensammlung</a>
             <a class="tab-link" href="dashboard.html">Dashboard</a>
@@ -32,20 +33,22 @@
             </div>
             <div class="grid">
               <a class="btn primary" href="new-question.html">Neue Frage</a>
-              <button id="seedState" class="btn secondary" type="button">Beispieldaten laden</button>
             </div>
           </div>
         <div class="grid two" style="margin-top:1.5rem">
           <div>
             <label for="searchText">Suche</label>
-            <input id="searchText" type="text" placeholder="Stichwort im Fragentext ..." />
+            <input id="searchText" type="text" placeholder="Stichwort im Fragetext ..." />
           </div>
           <div class="grid two">
             <div>
               <label for="searchTopic">Thema</label>
-              <select id="searchTopic">
-                <option value="">Alle Themen</option>
-              </select>
+              <div class="input-group">
+                  <select id="searchTopic">
+                    <option value="">Alle Themen</option>
+                  </select>
+                  <button type="button" id="addTopicBtn" class="btn secondary" title="Neues Thema">+</button>
+              </div>
             </div>
             <div>
               <label for="searchType">Aufgabentyp</label>
@@ -62,10 +65,9 @@
         </section>
       </main>
 
-      <footer class="footer">Fragen lassen sich lokal im Browser persistieren (localStorage).</footer>
+      <footer class="footer">IDPA Projekt 2026</footer>
     </div>
     <script type="module" src="assets/js/app-shell.js"></script>
     <script type="module" src="assets/js/question-bank.js"></script>
   </body>
 </html>
-

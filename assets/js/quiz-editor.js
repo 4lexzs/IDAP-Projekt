@@ -1,75 +1,74 @@
-import { addTopic, getAllQuestions, getQuizById, getQuestions, getTopics, upsertQuiz } from "./storage.js";
+import { addTopic, getAllQuestions, getQuizById, getTopics, upsertQuiz } from "./storage.js";
 
 const params = new URLSearchParams(window.location.search);
 const quizId = params.get("quiz");
-
 const form = document.querySelector("#quizForm");
 const nameInput = document.querySelector("#quizName");
 const topicSelect = document.querySelector("#quizTopic");
+const addTopicBtn = document.querySelector("#addTopicBtn");
+
 const pool = document.querySelector("#questionPool");
 const selectedList = document.querySelector("#selectedQuestions");
 const poolSearchText = document.querySelector("#poolSearchText");
 const poolSearchTopic = document.querySelector("#poolSearchTopic");
 const poolSearchType = document.querySelector("#poolSearchType");
+const createQuestionBtn = document.querySelector("#createQuestionBtn");
 
 let selectedIds = [];
 let allQuestions = [];
 
+// init
 function populateTopics() {
   const topics = getTopics();
-  topicSelect.innerHTML = topics.map((topic) => `<option value="${topic.id}">${topic.name}</option>`).join("");
-  topicSelect.insertAdjacentHTML("beforeend", `<option value="__add">+ Neues Thema ...</option>`);
+  const html = topics.map((topic) => `<option value="${topic.id}">${topic.name}</option>`).join("");
+  
+  topicSelect.innerHTML = html;
+  
+  const currentPoolFilter = poolSearchTopic.value;
+  poolSearchTopic.innerHTML = `<option value="">Alle Themen</option>` + html;
+  poolSearchTopic.value = currentPoolFilter;
 }
 
-function ensureTopic(value) {
-  if (value !== "__add") return value;
-  const newName = prompt("Name des neuen Themas:");
-  if (!newName) return topicSelect.value;
-  const topic = addTopic(newName);
-  populateTopics();
-  topicSelect.value = topic.id;
-  return topic.id;
-}
+addTopicBtn.addEventListener("click", async () => {
+    const newName = prompt("Name des neuen Themas:");
+    if (!newName) return;
+    const topic = await addTopic(newName);
+    populateTopics();
+    topicSelect.value = topic.id;
+});
 
 function refreshAllQuestions() {
   allQuestions = getAllQuestions();
-  const topics = [...new Set(allQuestions.map((question) => question.topicName).filter(Boolean))];
-  const currentValue = poolSearchTopic.value;
-  poolSearchTopic.innerHTML = `<option value="">Alle</option>${topics.map((name) => `<option value="${name}">${name}</option>`).join("")}`;
-  if (topics.includes(currentValue)) {
-    poolSearchTopic.value = currentValue;
-  }
 }
 
+// filter pool
 function renderPool() {
   const text = poolSearchText.value.trim().toLowerCase();
-  const topicFilter = poolSearchTopic.value;
-  const typeFilter = poolSearchType.value;
+  const topicId = poolSearchTopic.value;
+  const type = poolSearchType.value;
+
   const questions = allQuestions.filter((question) => {
-    if (topicFilter && question.topicName !== topicFilter) return false;
-    if (typeFilter && question.type !== typeFilter) return false;
+    if (topicId && question.topicId !== topicId) return false;
+    if (type && question.type !== type) return false;
     if (text) {
       const haystack = `${question.title} ${(question.options ?? []).join(" ")}`.toLowerCase();
       if (!haystack.includes(text)) return false;
     }
     return true;
   });
-  pool.innerHTML =
-    questions
-      .map(
-        (q) => `
-        <label class="list-item" style="cursor:pointer">
-          <div>
-            <strong>${q.title}</strong>
-            <div class="quiz-meta">
-              <span class="badge">${q.type}</span>
-              <span>${q.points} Punkte</span>
-            </div>
-          </div>
-          <input type="checkbox" data-id="${q.id}" ${selectedIds.includes(q.id) ? "checked" : ""} />
-        </label>`
-      )
-      .join("") || `<p class="muted">Noch keine Fragen vorhanden.</p>`;
+
+  pool.innerHTML = questions.map((q) => `
+    <label class="list-item pool-item" style="cursor:pointer;">
+      <div style="flex:1">
+        <strong>${q.title}</strong>
+        <div class="quiz-meta" style="margin-top:0.25rem">
+          <span class="badge">${q.type}</span>
+          <span class="badge badge-author">${q.owner}</span>
+        </div>
+      </div>
+      <input type="checkbox" data-id="${q.id}" ${selectedIds.includes(q.id) ? "checked" : ""} />
+    </label>`
+  ).join("") || `<p class="muted" style="text-align:center; padding:1rem;">Keine passenden Fragen gefunden.</p>`;
 }
 
 function renderSelected() {
@@ -77,32 +76,30 @@ function renderSelected() {
     acc[question.id] = question;
     return acc;
   }, {});
-  selectedList.innerHTML =
-    selectedIds
-      .map((id, index) => {
-        const q = questionMap[id];
-        return `
-        <article class="list-item">
-          <div>
-            <strong>${index + 1}. ${q?.title ?? "Frage nicht verfügbar"}</strong>
-            <div class="quiz-meta">
-              <span>${q?.points ?? 0} Punkte</span>
-              ${q?.owner ? `<span class="badge">Autor · ${q.owner}</span>` : ""}
-            </div>
-          </div>
-          <button class="btn secondary" data-remove="${id}">Entfernen</button>
-        </article>`;
-      })
-      .join("") || `<p class="muted">Wähle Fragen aus dem Pool.</p>`;
+  
+  selectedList.innerHTML = selectedIds.map((id, index) => {
+    const q = questionMap[id];
+    return `
+    <article class="list-item">
+      <div>
+        <strong>${index + 1}. ${q?.title ?? "Frage nicht verfügbar"}</strong>
+      </div>
+      <button class="btn secondary small" data-remove="${id}">X</button>
+    </article>`;
+  }).join("") || `<p class="muted">Noch keine Fragen ausgewählt.</p>`;
+}
+
+function updateCreateLink() {
+  let href = "new-question.html?return=quiz";
+  if (quizId) href += `&returnId=${quizId}`;
+  if (createQuestionBtn) createQuestionBtn.href = href;
 }
 
 pool.addEventListener("change", (event) => {
   const id = event.target.dataset.id;
   if (!id) return;
   if (event.target.checked) {
-    if (!selectedIds.includes(id)) {
-      selectedIds.push(id);
-    }
+    if (!selectedIds.includes(id)) selectedIds.push(id);
   } else {
     selectedIds = selectedIds.filter((entry) => entry !== id);
   }
@@ -117,13 +114,13 @@ selectedList.addEventListener("click", (event) => {
   renderSelected();
 });
 
-form.addEventListener("submit", (event) => {
+// save quiz
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const topicId = ensureTopic(topicSelect.value);
-  upsertQuiz({
+  await upsertQuiz({
     id: quizId ?? undefined,
     name: nameInput.value,
-    topicId,
+    topicId: topicSelect.value, 
     questionIds: selectedIds,
   });
   window.location.href = "dashboard.html";
@@ -135,28 +132,19 @@ function hydrateQuiz() {
   if (!quiz) return;
   nameInput.value = quiz.name;
   topicSelect.value = quiz.topicId;
-  if (!topicSelect.value) {
-    const fallbackOption = document.createElement("option");
-    fallbackOption.value = quiz.topicId;
-    fallbackOption.textContent = "Importiertes Thema";
-    topicSelect.insertBefore(fallbackOption, topicSelect.firstChild);
-    topicSelect.value = quiz.topicId;
-  }
   selectedIds = [...quiz.questionIds];
 }
-
-populateTopics();
-refreshAllQuestions();
-hydrateQuiz();
-renderPool();
-renderSelected();
 
 [poolSearchText, poolSearchTopic, poolSearchType].forEach((control) => {
   control?.addEventListener("input", renderPool);
   control?.addEventListener("change", renderPool);
 });
 
-topicSelect.addEventListener("change", (event) => {
-  ensureTopic(event.target.value);
-});
-
+setTimeout(() => {
+    populateTopics();
+    refreshAllQuestions();
+    hydrateQuiz();
+    renderPool();
+    renderSelected();
+    updateCreateLink();
+}, 200);

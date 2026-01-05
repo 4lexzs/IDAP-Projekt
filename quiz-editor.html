@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wirtschaftsquiz – Quiz bearbeiten</title>
+    <title>Wirtschaftsquiz – Quiz Editor</title>
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -12,6 +12,7 @@
         <div class="nav">
           <strong>Wirtschaftsquiz</strong>
           <div class="tabs">
+            <button id="themeToggle" class="theme-toggle">🌙</button>
             <a class="tab-link" href="index.html">Home</a>
             <a class="tab-link" href="question-bank.html">Fragensammlung</a>
             <a class="tab-link active" href="dashboard.html">Dashboard</a>
@@ -25,59 +26,76 @@
 
       <main class="content">
         <section class="card">
-          <h1>Quiz erstellen / bearbeiten</h1>
-          <form id="quizForm">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+             <h1>Quiz erstellen</h1>
+             <a href="dashboard.html" class="btn secondary small">Zurück</a>
+          </div>
+
+          <form id="quizForm" style="margin-top:1rem;">
             <div class="grid two">
               <div>
-                <label for="quizName">Name</label>
-                <input type="text" id="quizName" required />
+                <label for="quizName">Name des Quiz</label>
+                <input type="text" id="quizName" required placeholder="z.B. Testprüfung Makroökonomie" />
               </div>
               <div>
                 <label for="quizTopic">Thema</label>
-                <select id="quizTopic" required></select>
+                <div class="input-group">
+                    <select id="quizTopic" required></select>
+                    <button type="button" id="addTopicBtn" class="btn secondary" title="Neues Thema erstellen">+</button>
+                </div>
               </div>
             </div>
-            <div class="grid two" style="margin-top: 1.5rem">
+
+            <div class="grid two" style="margin-top: 2rem">
               <div>
-                <h3>Fragenpool</h3>
-                <p class="muted">Wähle Fragen aus der Sammlung oder erstelle neue.</p>
-                <div class="grid two" style="margin-bottom:1rem">
-                  <div>
-                    <label for="poolSearchText">Suche</label>
-                    <input id="poolSearchText" type="text" placeholder="Stichwort ..." />
-                  </div>
-                  <div class="grid two">
-                    <div>
-                      <label for="poolSearchTopic">Thema</label>
-                      <select id="poolSearchTopic">
-                        <option value="">Alle</option>
-                      </select>
+                <h3>Fragenpool durchsuchen</h3>
+                
+                <div class="search-panel">
+                    <div class="grid">
+                        <div>
+                            <label for="poolSearchText" style="margin-top:0">Suche nach Text</label>
+                            <input id="poolSearchText" type="text" placeholder="Stichwort..." />
+                        </div>
+                        <div class="grid two">
+                            <div>
+                                <label for="poolSearchTopic" style="margin-top:0">Filter: Thema</label>
+                                <select id="poolSearchTopic">
+                                    <option value="">Alle</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="poolSearchType" style="margin-top:0">Filter: Typ</label>
+                                <select id="poolSearchType">
+                                    <option value="">Alle</option>
+                                    <option value="multiple">Multiple Choice</option>
+                                    <option value="truefalse">Richtig/Falsch</option>
+                                    <option value="input">Eingabe</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                      <label for="poolSearchType">Aufgabentyp</label>
-                      <select id="poolSearchType">
-                        <option value="">Alle</option>
-                        <option value="multiple">Multiple Choice</option>
-                        <option value="truefalse">Richtig / Falsch</option>
-                        <option value="input">Eingabe</option>
-                      </select>
-                    </div>
-                  </div>
                 </div>
-                <div id="questionPool" class="list"></div>
-                <a class="btn secondary" href="new-question.html" target="_blank">Neue Frage anlegen</a>
+
+                <div id="questionPool" class="list" style="max-height: 400px; overflow-y: auto;"></div>
+                <div style="margin-top:1rem;">
+                    <a id="createQuestionBtn" class="btn secondary" style="width:100%" href="#">+ Neue Frage im Pool anlegen</a>
+                </div>
               </div>
+
               <div>
-                <h3>Quizfragen</h3>
-                <p class="muted">Ausgewählte Fragen in aktueller Reihenfolge.</p>
+                <h3>Ausgewählte Fragen</h3>
+                <p class="muted">Diese Fragen erscheinen im Quiz.</p>
                 <div id="selectedQuestions" class="list"></div>
               </div>
             </div>
-            <button class="btn primary" type="submit">Quiz speichern</button>
+            
+            <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+                <button class="btn primary" type="submit">Quiz speichern</button>
+            </div>
           </form>
         </section>
       </main>
-      <footer class="footer">Das Quiz wird im lokalen Speicher abgelegt.</footer>
+      <footer class="footer">IDPA Projekt 2026 - Quiz Editor</footer>
     </div>
     <script type="module" src="assets/js/app-shell.js"></script>
     <script type="module" src="assets/js/quiz-editor.js"></script>

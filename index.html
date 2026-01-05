@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wirtschaftsquiz – Home</title>
+    <title>Wirtschaftsquiz – IDPA Projekt</title>
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -12,47 +12,50 @@
         <div class="nav">
           <strong>Wirtschaftsquiz</strong>
           <div class="tabs">
-            <a class="tab-link active" href="index.html">Home</a>
-            <a class="tab-link" href="question-bank.html">Fragensammlung</a>
-            <a class="tab-link" href="dashboard.html">Dashboard</a>
+             <button id="themeToggle" class="theme-toggle" title="Design wechseln">🌙</button>
+             <a class="tab-link active" href="index.html">Home</a>
+             <a class="tab-link" href="question-bank.html">Fragensammlung</a>
+             <a class="tab-link" href="dashboard.html">Dashboard</a>
           </div>
-          <div class="user-chip">
-            <span id="userBadge"></span>
-            <button class="btn secondary small" id="logoutBtn" type="button">Logout</button>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+             <a id="loginLink" class="btn secondary small" href="auth.html">Anmelden</a>
+             
+             <div class="user-chip">
+                 <span id="userBadge" style="font-weight:bold; margin-right:0.5rem"></span>
+                 <button class="btn secondary small" id="logoutBtn" type="button" style="display:none">Logout</button>
+             </div>
           </div>
         </div>
       </header>
 
       <main class="content">
-        <section class="card">
-          <h1>Projektskizze</h1>
-          <p>
-            Die Anwendung stellt eine einfache Verwaltungsoberfläche für wirtschaftsbezogene Fragen und Quizze bereit. Lehrpersonen können Themen
-            erfassen, neue Fragen anlegen, daraus Quizze zusammenstellen und diese per Link an Lernende weitergeben.
-          </p>
-          <div class="grid two" style="margin-top: 2rem">
-            <div>
-              <h3>Funktionen</h3>
-              <ul>
-                <li>Fragenverwaltung (Multiple Choice, Richtig/Falsch, Freitext)</li>
-                <li>Zuweisung von Themen & Punkten</li>
-                <li>Quiz-Dashboard mit Teilen/Löschen</li>
-                <li>Durchführung eines Quiz inklusive Auswertung</li>
-              </ul>
+        <section class="hero">
+            <h1>Wirtschaft spielerisch meistern</h1>
+            <p>Die moderne Plattform für Schüler und Lehrer, um ökonomisches Wissen zu testen und zu vertiefen.</p>
+            <div style="display:flex; gap:1rem; justify-content:center;">
+                <a href="dashboard.html" class="btn primary" style="font-size:1.2rem; padding: 1rem 2rem;">Jetzt Starten</a>
             </div>
-            <div>
-              <h3>Schnellstart</h3>
-              <p class="muted">Nutze die Buttons, um sofort mit Beispieldaten zu arbeiten.</p>
-              <div class="grid">
-                <a class="btn primary" href="question-bank.html">Fragensammlung öffnen</a>
-                <a class="btn secondary" href="dashboard.html">Zum Quiz-Dashboard</a>
-              </div>
-            </div>
-          </div>
         </section>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>📚 Themenvielfalt</h3>
+                <p>Von Makroökonomie bis Marketing – deckt alle wichtigen Bereiche ab.</p>
+            </div>
+            <div class="feature-card">
+                <h3>👥 Interaktiv</h3>
+                <p>Teile Quizze mit deiner Klasse über einen einfachen Link.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🚀 Modern</h3>
+                <p>Node.js Backend, Dark Mode und Responsive Design.</p>
+            </div>
+        </div>
       </main>
 
-      <footer class="footer">IDPA – Informatik & Wirtschaft · Lo-Fi Prototyp umgesetzt in HTML/CSS/JS</footer>
+      <footer class="footer">
+        <p>&copy; 2026 IDPA Projektteam.</p>
+      </footer>
     </div>
     <script type="module" src="assets/js/app-shell.js"></script>
   </body>

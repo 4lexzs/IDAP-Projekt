@@ -12,6 +12,7 @@
         <div class="nav">
           <strong>Wirtschaftsquiz</strong>
           <div class="tabs">
+            <button id="themeToggle" class="theme-toggle">🌙</button>
             <a class="tab-link" href="index.html">Home</a>
             <a class="tab-link" href="question-bank.html">Fragensammlung</a>
             <a class="tab-link" href="dashboard.html">Dashboard</a>
@@ -24,17 +25,19 @@
       </header>
 
       <main class="content">
-        <section class="card">
-          <h1 id="reviewTitle">Auswertung</h1>
-          <p id="scoreLine" class="muted"></p>
+          <h1 id="reviewTitle" style="text-align:center; margin-bottom: 2rem;">Auswertung</h1>
+          
+          <div id="scoreContainer"></div>
+          
           <div id="reviewList"></div>
-          <a class="btn secondary" href="dashboard.html" style="margin-top:1rem">Zurück zum Dashboard</a>
-        </section>
+          
+          <div style="text-align:center; margin-top:2rem;">
+              <a class="btn primary" href="dashboard.html">Zurück zum Dashboard</a>
+          </div>
       </main>
-      <footer class="footer">Korrekte Lösungen werden hervorgehoben.</footer>
+      <footer class="footer">IDPA Projekt 2026</footer>
     </div>
     <script type="module" src="assets/js/app-shell.js"></script>
     <script type="module" src="assets/js/review.js"></script>
   </body>
 </html>
-

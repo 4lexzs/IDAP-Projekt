@@ -1,0 +1,588 @@
+{
+  "users": [
+    {
+      "username": "qwe",
+      "password": "qweee"
+    },
+    {
+      "username": "ewq",
+      "password": "ewqq"
+    },
+    {
+      "username": "system",
+      "password": "sys"
+    },
+    {
+      "username": "hii",
+      "password": "was"
+    },
+    {
+      "username": "y4lexzs",
+      "password": "sigma17"
+    }
+  ],
+  "topics": [
+    {
+      "id": "topic-makro",
+      "name": "Makroökonomie"
+    },
+    {
+      "id": "topic-produktionsfaktoren",
+      "name": "Produktionsfaktoren"
+    },
+    {
+      "id": "topic-nachfrage",
+      "name": "Nachfrage und Preise"
+    },
+    {
+      "id": "topic-wirtschaftssysteme",
+      "name": "Wirtschaftssysteme"
+    },
+    {
+      "id": "topic-marktstrukturen",
+      "name": "Marktstrukturen"
+    },
+    {
+      "id": "topic-inflation",
+      "name": "Inflation und Preisindex"
+    },
+    {
+      "id": "topic-management",
+      "name": "Unternehmensmanagement"
+    },
+    {
+      "id": "topic-finanzierung",
+      "name": "Finanzierung und Zinsen"
+    },
+    {
+      "id": "topic-marketing",
+      "name": "Marketing und Branding"
+    },
+    {
+      "id": "topic-arbeitsmarkt",
+      "name": "Arbeitsmarkt"
+    },
+    {
+      "id": "topic-investition",
+      "name": "Investition und Portfolio"
+    },
+    {
+      "id": "topic-aussenhandel",
+      "name": "Aussenhandel"
+    },
+    {
+      "id": "topic-csr",
+      "name": "Unternehmensverantwortung"
+    },
+    {
+      "id": "topic-wettbewerb",
+      "name": "Wettbewerb"
+    },
+    {
+      "id": "topic-venture",
+      "name": "Unternehmensfinanzierung"
+    },
+    {
+      "id": "topic-bilanz",
+      "name": "Bilanz und Vermögen"
+    },
+    {
+      "id": "topic-geldpolitik",
+      "name": "Geldpolitik"
+    },
+    {
+      "id": "topic-steuersystem",
+      "name": "Steuersystem"
+    },
+    {
+      "id": "topic-kostenrechnung",
+      "name": "Kostenrechnung"
+    },
+    {
+      "id": "topic-betriebswirtschaft",
+      "name": "Betriebswirtschaft"
+    },
+    {
+      "id": "topic-unternehmensstrukturen",
+      "name": "Unternehmensstrukturen"
+    },
+    {
+      "id": "topic-kapitalmarkt",
+      "name": "Kapitalmarkt"
+    },
+    {
+      "id": "topic-u1h07yc",
+      "name": "qqq"
+    },
+    {
+      "id": "topic-x4bk901",
+      "name": "fragentehema"
+    }
+  ],
+  "questions": [
+    {
+      "id": "question-mc-1",
+      "topicId": "topic-makro",
+      "title": "Was ist der Unterschied zwischen Bruttoinlandsprodukt (BIP) und Nettoinlandsprodukt (NIP)?",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "NIP ist BIP minus Abschreibungen",
+        "Es gibt keinen Unterschied",
+        "BIP ist nur für grosse Länder",
+        "NIP ist älter als BIP"
+      ],
+      "answer": 0,
+      "owner": "system"
+    },
+    {
+      "id": "question-mc-2",
+      "topicId": "topic-produktionsfaktoren",
+      "title": "Welche der folgenden ist KEINE klassische Produktionsfaktor?",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "Arbeit",
+        "Kapital",
+        "Boden",
+        "Zeit"
+      ],
+      "answer": 3,
+      "owner": "system"
+    },
+    {
+      "id": "question-mc-3",
+      "topicId": "topic-nachfrage",
+      "title": "Was versteht man unter 'Elastizität der Nachfrage'?",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "Die Fähigkeit eines Produkts, seine Form zu ändern",
+        "Die Reaktion der Nachfrage auf Preisveränderungen",
+        "Die Lagerfähigkeit eines Produkts",
+        "Die Transportfähigkeit einer Ware"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-mc-4",
+      "topicId": "topic-wirtschaftssysteme",
+      "title": "Welches Wirtschaftssystem kombiniert Marktmechanismen mit staatlicher Regulierung?",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "Planwirtschaft",
+        "Sozialistische Wirtschaft",
+        "Soziale Marktwirtschaft",
+        "Kapitalismus ohne Grenzen"
+      ],
+      "answer": 2,
+      "owner": "system"
+    },
+    {
+      "id": "question-mc-5",
+      "topicId": "topic-marktstrukturen",
+      "title": "Was ist ein 'Monopol' in der Wirtschaft?",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "Ein Unternehmen mit mehreren Konkurrenten",
+        "Ein Unternehmen, das ein Produkt allein anbietet",
+        "Eine Partnerschaft zwischen zwei Firmen",
+        "Ein Zusammenschluss von Arbeiterverbänden"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-mc-6",
+      "topicId": "topic-inflation",
+      "title": "Welcher Index misst die Inflation im Konsumentenbereich?",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "DAX-Index",
+        "Verbraucherpreisindex (VPI)",
+        "Produktpreisindex",
+        "Börsenindex"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-mc-7",
+      "topicId": "topic-management",
+      "title": "Was versteht man unter 'Outsourcing'?",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "Die Einstellung neuer Mitarbeiter",
+        "Das Auslagern von Unternehmensaufgaben an externe Partner",
+        "Die Eröffnung einer Filiale",
+        "Der Verkauf eines Unternehmens"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-mc-8",
+      "topicId": "topic-finanzierung",
+      "title": "Welche Aussage über den Zinssatz ist korrekt?",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "Er wird immer von der Regierung festgelegt",
+        "Er ist der Preis für geliehenes Geld",
+        "Er kann niemals sinken",
+        "Er beträgt immer 5%"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-mc-9",
+      "topicId": "topic-marketing",
+      "title": "Was ist 'Branding'?",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "Das Verbrennen von Produkten",
+        "Das Schaffen und Verwaltung einer Markenidentität",
+        "Das Vergeben von Lizenzen",
+        "Das Ändern von Produktnamen"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-mc-10",
+      "topicId": "topic-makro",
+      "title": "Welche der folgenden Aussagen zum BIP ist FALSCH?",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "BIP misst den Wert aller Waren und Dienstleistungen",
+        "BIP berücksichtigt illegale Aktivitäten",
+        "BIP kann negativ wachsen (Rezession)",
+        "BIP wird jährlich gemessen"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-tf-1",
+      "topicId": "topic-inflation",
+      "title": "Eine Inflation bedeutet, dass die Preise sinken.",
+      "type": "truefalse",
+      "points": 1,
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-tf-2",
+      "topicId": "topic-arbeitsmarkt",
+      "title": "Der Mindestlohn wird ausschliesslich vom Arbeitgeber bestimmt.",
+      "type": "truefalse",
+      "points": 1,
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-tf-3",
+      "topicId": "topic-investition",
+      "title": "Diversifikation ist eine Strategie zur Risikoverteilung im Portfolio.",
+      "type": "truefalse",
+      "points": 1,
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "answer": 0,
+      "owner": "system"
+    },
+    {
+      "id": "question-tf-4",
+      "topicId": "topic-aussenhandel",
+      "title": "Ein positiver Aussenhandelssaldo bedeutet, dass ein Land mehr importiert als exportiert.",
+      "type": "truefalse",
+      "points": 1,
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-tf-5",
+      "topicId": "topic-csr",
+      "title": "Corporate Social Responsibility (CSR) befasst sich mit sozialer und ökologischer Verantwortung von Unternehmen.",
+      "type": "truefalse",
+      "points": 1,
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "answer": 0,
+      "owner": "system"
+    },
+    {
+      "id": "question-tf-6",
+      "topicId": "topic-wettbewerb",
+      "title": "Freier Wettbewerb führt immer zu den besten Ergebnissen für den Verbraucher.",
+      "type": "truefalse",
+      "points": 1,
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-tf-7",
+      "topicId": "topic-venture",
+      "title": "Ein Venture Capitalist investiert in etablierte grosse Unternehmen.",
+      "type": "truefalse",
+      "points": 1,
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-tf-8",
+      "topicId": "topic-bilanz",
+      "title": "Lagerbestand ist ein Anlage- oder Umweltvermögen.",
+      "type": "truefalse",
+      "points": 1,
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "answer": 1,
+      "owner": "system"
+    },
+    {
+      "id": "question-tf-9",
+      "topicId": "topic-geldpolitik",
+      "title": "Die Europäische Zentralbank (EZB) kontrolliert die Geldmenge in der Eurozone.",
+      "type": "truefalse",
+      "points": 1,
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "answer": 0,
+      "owner": "system"
+    },
+    {
+      "id": "question-tf-10",
+      "topicId": "topic-steuersystem",
+      "title": "Steuerprogression bedeutet, dass höhere Einkommen mit höheren Steuersätzen besteuert werden.",
+      "type": "truefalse",
+      "points": 1,
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "answer": 0,
+      "owner": "system"
+    },
+    {
+      "id": "question-open-1",
+      "topicId": "topic-kostenrechnung",
+      "title": "Erklären Sie den Unterschied zwischen Fixkosten und variablen Kosten.",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "Fixkosten sind unabhängig von der Produktionsmenge (z.B. Miete), variable Kosten ändern sich mit der Produktion (z.B. Material)",
+      "owner": "system"
+    },
+    {
+      "id": "question-open-2",
+      "topicId": "topic-marketing",
+      "title": "Was sind die vier P's des Marketing?",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "Produkt, Preis (Price), Platzierung (Place), Promotion/Werbung",
+      "owner": "system"
+    },
+    {
+      "id": "question-open-3",
+      "topicId": "topic-betriebswirtschaft",
+      "title": "Definieren Sie 'Gewinn' in der Betriebswirtschaft.",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "Gewinn = Einnahmen - Ausgaben (oder Umsatz minus Kosten)",
+      "owner": "system"
+    },
+    {
+      "id": "question-open-4",
+      "topicId": "topic-arbeitsmarkt",
+      "title": "Welche Arten von Arbeitslosigkeit gibt es?",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "Zyklisch, strukturell, friktional, saisonal",
+      "owner": "system"
+    },
+    {
+      "id": "question-open-5",
+      "topicId": "topic-kostenrechnung",
+      "title": "Was versteht man unter 'Break-Even-Point'?",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "Der Punkt, an dem Einnahmen gleich Ausgaben sind (kein Gewinn, kein Verlust)",
+      "owner": "system"
+    },
+    {
+      "id": "question-open-6",
+      "topicId": "topic-aussenhandel",
+      "title": "Erklären Sie das Prinzip der komparativen Kostenvorteile.",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "Ein Land/Unternehmen sollte sich auf Produkte konzentrieren, bei denen es relative Kostenvorteile hat",
+      "owner": "system"
+    },
+    {
+      "id": "question-open-7",
+      "topicId": "topic-unternehmensstrukturen",
+      "title": "Was ist eine 'Holdinggesellschaft'?",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "Ein Unternehmen, das Anteile an anderen Unternehmen hält, ohne selbst Produkte/Dienstleistungen herzustellen",
+      "owner": "system"
+    },
+    {
+      "id": "question-open-8",
+      "topicId": "topic-finanzierung",
+      "title": "Definieren Sie 'Amortisation'.",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "Die Rückzahlung einer Schuld in regelmässigen Raten oder der Wertverlust eines Vermögenswertes über Zeit",
+      "owner": "system"
+    },
+    {
+      "id": "question-open-9",
+      "topicId": "topic-nachfrage",
+      "title": "Welche Faktoren beeinflussen die Preiselastizität der Nachfrage?",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "Verfügbarkeit von Alternativen, Notwendigkeit vs. Luxus, Anteil am Einkommen, Gewöhnungseffekte",
+      "owner": "system"
+    },
+    {
+      "id": "question-open-10",
+      "topicId": "topic-kapitalmarkt",
+      "title": "Erklären Sie den Unterschied zwischen Aktien und Anleihen.",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "Aktien sind Eigentumsanteile an einem Unternehmen, Anleihen sind Schuldverschreibungen mit festem Zinssatz",
+      "owner": "system"
+    },
+    {
+      "id": "question-qau7bcj",
+      "title": "wergergefe",
+      "topicId": "topic-aussenhandel",
+      "type": "multiple",
+      "points": 1,
+      "options": [
+        "Antwort 1",
+        "Antwort 2",
+        "grthtertg"
+      ],
+      "answer": 0,
+      "owner": "qwe"
+    },
+    {
+      "id": "question-eoh99xh",
+      "title": "was ist die frage",
+      "topicId": "topic-x4bk901",
+      "type": "multiple",
+      "points": 1,
+      "answer": [
+        1
+      ],
+      "options": [
+        "Antwort o2i3",
+        "Antwort 2°§¬|¢"
+      ],
+      "owner": "hii"
+    },
+    {
+      "id": "question-i3jjoym",
+      "title": "egwgcefrth",
+      "topicId": "topic-finanzierung",
+      "type": "multiple",
+      "points": 1,
+      "answer": [
+        1,
+        2
+      ],
+      "options": [
+        "Antwort 1",
+        "Antwort 2",
+        "kjmhn"
+      ],
+      "owner": "qwe"
+    },
+    {
+      "id": "question-xvk2cl0",
+      "title": "kein frage oder so",
+      "topicId": "topic-makro",
+      "type": "input",
+      "points": 1,
+      "options": [],
+      "answer": "was auch immer",
+      "owner": "hii"
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "quiz-f05qt05",
+      "name": "whatvenklrf",
+      "topicId": "topic-makro",
+      "questionIds": [
+        "question-mc-1",
+        "question-mc-2",
+        "question-eoh99xh",
+        "question-xvk2cl0"
+      ],
+      "shareCode": "WHATVENKLRF",
+      "owner": "hii"
+    },
+    {
+      "id": "quiz-ojobgrz",
+      "name": "gtreferfgh",
+      "topicId": "topic-finanzierung",
+      "questionIds": [
+        "question-mc-3",
+        "question-mc-5",
+        "question-tf-2",
+        "question-tf-1"
+      ],
+      "shareCode": "GTREFERFGH",
+      "owner": "qwe"
+    }
+  ]
+}
